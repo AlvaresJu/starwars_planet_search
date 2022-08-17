@@ -4,6 +4,8 @@ import MyContext from './MyContext';
 
 function MyProvider({ children }) {
   const [planetsData, setPlanetsData] = useState([]);
+  const [filterByName, setFilterByName] = useState({ name: '' });
+  const [filteredPlanets, setFilteredPlanets] = useState([]);
 
   useEffect(() => {
     const getPalnetsData = async () => {
@@ -15,6 +17,7 @@ function MyProvider({ children }) {
           return planet;
         });
         setPlanetsData(selectedData);
+        setFilteredPlanets(selectedData);
       } catch (error) {
         console.log(error);
       }
@@ -22,7 +25,14 @@ function MyProvider({ children }) {
     getPalnetsData();
   }, []);
 
-  const contextValue = { planetsData };
+  const handleNameFilter = ({ target }) => {
+    setFilterByName({ name: target.value });
+    const planetsFilteredByName = planetsData
+      .filter(({ name }) => name.toLowerCase().includes(target.value.toLowerCase()));
+    setFilteredPlanets(planetsFilteredByName);
+  };
+
+  const contextValue = { planetsData, filterByName, handleNameFilter, filteredPlanets };
 
   return (
     <MyContext.Provider value={ contextValue }>
