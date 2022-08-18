@@ -49,7 +49,7 @@ function NumericFilterForm() {
       <button
         type="button"
         data-testid="button-filter"
-        disabled={ currNumericFilters.value === '' }
+        disabled={ columnFilterOptions.length <= 0 }
         onClick={ handleNumericFilter }
       >
         Filtrar

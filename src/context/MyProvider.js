@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import MyContext from './MyContext';
 
 function MyProvider({ children }) {
+  const fullColumnOptions = [
+    'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
+
   const [planetsData, setPlanetsData] = useState([]);
   const [filterByName, setFilterByName] = useState({ name: '' });
   const [filteredPlanets, setFilteredPlanets] = useState([]);
-  const [columnFilterOptions, setColumnFilterOptions] = useState([
-    'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water']);
+  const [columnFilterOptions, setColumnFilterOptions] = useState(fullColumnOptions);
   const [currNumericFilters, setCurrNumericFilters] = useState({
     column: 'population',
     comparison: 'maior que',
@@ -33,12 +35,15 @@ function MyProvider({ children }) {
     getPalnetsData();
   }, []);
 
+  const applyNameFilter = (nameToFilter) => {
+    const planetsFilteredByName = planetsData
+      .filter(({ name }) => name.toLowerCase().includes(nameToFilter.toLowerCase()));
+    setFilteredPlanets(planetsFilteredByName);
+  };
+
   const handleNameFilter = ({ target }) => {
     setFilterByName({ name: target.value });
-
-    const planetsFilteredByName = planetsData
-      .filter(({ name }) => name.toLowerCase().includes(target.value.toLowerCase()));
-    setFilteredPlanets(planetsFilteredByName);
+    applyNameFilter(target.value);
   };
 
   const handleNumericFiltersChange = ({ target }) => {
@@ -85,7 +90,26 @@ function MyProvider({ children }) {
       });
     };
     applyNumericFilters();
+    // eslint-disable-next-line
   }, [filterByNumericValues, filterByName]);
+
+  const removeNumericFilter = (columnToRemove) => {
+    const updatedFilterList = filterByNumericValues
+      .filter(({ column }) => column !== columnToRemove);
+    setFilterByNumericValues(updatedFilterList);
+
+    applyNameFilter(filterByName.name);
+
+    const updatedColumOptions = fullColumnOptions
+      .filter((option) => !updatedFilterList.some(({ column }) => column === option));
+    setColumnFilterOptions(updatedColumOptions);
+  };
+
+  const clearNumericFilters = () => {
+    setFilterByNumericValues([]);
+    applyNameFilter(filterByName.name);
+    setColumnFilterOptions(fullColumnOptions);
+  };
 
   const contextValue = { planetsData,
     filterByName,
@@ -95,7 +119,9 @@ function MyProvider({ children }) {
     filterByNumericValues,
     handleNameFilter,
     handleNumericFiltersChange,
-    handleNumericFilter };
+    handleNumericFilter,
+    removeNumericFilter,
+    clearNumericFilters };
 
   return (
     <MyContext.Provider value={ contextValue }>
