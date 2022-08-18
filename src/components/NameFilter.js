@@ -7,7 +7,7 @@ function NameFilter() {
   return (
     <form>
       <label htmlFor="planetName">
-        Planet Name:
+        Nome do Planeta:
         <input
           type="text"
           data-testid="name-filter"

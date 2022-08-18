@@ -8,7 +8,7 @@ function Table() {
     const planetsInfo = Object.keys(planetsData[0]);
     return (
       <table>
-        <caption>StarWars Planets</caption>
+        <caption>Planetas do Universo StarWars</caption>
         <thead>
           <tr>
             { planetsInfo.map((info) => <th key={ info }>{ info }</th>) }
