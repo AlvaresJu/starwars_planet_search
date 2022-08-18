@@ -18,7 +18,12 @@ function Table() {
           { filteredPlanets.map((planet) => (
             <tr key={ planet.name }>
               { planetsInfo.map((info, index) => (
-                <td key={ index }>{ planet[info] }</td>
+                <td
+                  key={ index }
+                  data-testid={ (info === 'name') ? 'planet-name' : '' }
+                >
+                  { planet[info] }
+                </td>
               )) }
             </tr>
           ))}

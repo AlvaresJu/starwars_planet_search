@@ -6,6 +6,7 @@ function NameFilter() {
 
   return (
     <form>
+      <h2>Filtro por Nome</h2>
       <label htmlFor="planetName">
         Nome do Planeta:
         <input

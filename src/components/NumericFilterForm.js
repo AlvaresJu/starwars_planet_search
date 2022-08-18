@@ -9,6 +9,7 @@ function NumericFilterForm() {
 
   return (
     <form>
+      <h2>Filtros Numéricos</h2>
       <label htmlFor="column">
         Propriedade:
         <select
@@ -23,7 +24,7 @@ function NumericFilterForm() {
         </select>
       </label>
       <label htmlFor="comparison">
-        Operador
+        Operador:
         <select
           data-testid="comparison-filter"
           id="comparison"

@@ -16,6 +16,7 @@ function MyProvider({ children }) {
     value: '0',
   });
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
+  const [order, setOrder] = useState({ column: 'population', sort: 'ASC' });
 
   useEffect(() => {
     const getPalnetsData = async () => {
@@ -111,17 +112,52 @@ function MyProvider({ children }) {
     setColumnFilterOptions(fullColumnOptions);
   };
 
+  const handleOrderChange = ({ target }) => {
+    setOrder({
+      ...order,
+      [target.name]: target.value,
+    });
+  };
+
+  const checkUnknownValues = (planetList, planetProp) => {
+    const hasUnknownValues = planetList
+      .some((planet) => planet[planetProp] === 'unknown');
+    if (hasUnknownValues) {
+      const numericList = planetList.filter((planet) => planet[planetProp] !== 'unknown');
+      const unknownList = planetList.filter((planet) => planet[planetProp] === 'unknown');
+      return { numericList, unknownList };
+    }
+    return { numericList: planetList, unknownList: [] };
+  };
+
+  const sortPlanetList = () => {
+    const { column, sort } = order;
+    const { numericList, unknownList } = checkUnknownValues(filteredPlanets, column);
+    if (sort === 'ASC') {
+      const sortedPlanets = numericList
+        .sort((a, b) => Number(a[column]) - Number(b[column]));
+      setFilteredPlanets([...sortedPlanets, ...unknownList]);
+    } else {
+      const sortedPlanets = numericList
+        .sort((a, b) => Number(b[column]) - Number(a[column]));
+      setFilteredPlanets([...sortedPlanets, ...unknownList]);
+    }
+  };
+
   const contextValue = { planetsData,
     filterByName,
     filteredPlanets,
     columnFilterOptions,
     currNumericFilters,
     filterByNumericValues,
+    order,
     handleNameFilter,
     handleNumericFiltersChange,
     handleNumericFilter,
     removeNumericFilter,
-    clearNumericFilters };
+    clearNumericFilters,
+    handleOrderChange,
+    sortPlanetList };
 
   return (
     <MyContext.Provider value={ contextValue }>
