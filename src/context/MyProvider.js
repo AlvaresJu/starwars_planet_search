@@ -73,7 +73,7 @@ function MyProvider({ children }) {
     case 'menor que':
       return filteredPlanets.filter((planet) => Number(planet[column]) < Number(value));
     case 'igual a':
-      return filteredPlanets.filter((planet) => planet[column] === value);
+      return filteredPlanets.filter((planet) => Number(planet[column]) === Number(value));
     default:
       return filteredPlanets;
     }
