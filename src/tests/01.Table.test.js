@@ -4,29 +4,25 @@ import App from '../App';
 import { apiData, testTableData } from './mocks/testData';
 
 describe('Tests for Table component', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     jest.spyOn(global, 'fetch').mockResolvedValue({
       json: jest.fn().mockResolvedValue(apiData),
     });
+    render(<App />);
+    await waitForElementToBeRemoved(screen.queryByText(/carregando/i));
   });
 
   afterEach(() => {
     jest.resetAllMocks();
   });
 
-  test('if the API request was properly done', async () => {
-    render(<App />);
-    await waitForElementToBeRemoved(screen.queryByText(/carregando/i));
-
+  test('if the API request was properly done', () => {
     expect(fetch).toBeCalled();
     expect(fetch).toBeCalledTimes(1);
     expect(fetch).toBeCalledWith('https://swapi-trybe.herokuapp.com/api/planets/');
   });
 
-  test('if the Table has been properly populated with the data from API', async () => {
-    render(<App />);
-    await waitForElementToBeRemoved(screen.queryByText(/carregando/i));
-
+  test('if the Table has been properly populated with the data from API', () => {
     const planetsInfo = Object.keys(testTableData[0]);
     const tableHeader = screen.getAllByRole('columnheader');
     expect(tableHeader).toHaveLength(planetsInfo.length);
