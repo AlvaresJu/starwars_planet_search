@@ -65,8 +65,11 @@ describe('Tests for the Planet Numeric Filters', () => {
     const columnSortInput = screen.getByRole('combobox', { name: /ordenar por:/i });
     userEvent.selectOptions(columnSortInput, ['population']);
 
-    const descOption = screen.getByRole('radio', { name: /ascendente/i });
+    const descOption = screen.getByRole('radio', { name: /descendente/i });
     userEvent.click(descOption);
+
+    const ascOption = screen.getByRole('radio', { name: /ascendente/i });
+    userEvent.click(ascOption);
 
     const sortBtn = screen.getByRole('button', { name: /ordenar/i });
     userEvent.click(sortBtn);
