@@ -21,7 +21,7 @@ function MyProvider({ children }) {
   useEffect(() => {
     const getPalnetsData = async () => {
       try {
-        const apiResponse = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
+        const apiResponse = await fetch('https://swapi.dev/api/planets/');
         const apiData = await apiResponse.json();
         const selectedData = apiData.results.map((planet) => {
           delete planet.residents;

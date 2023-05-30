@@ -19,7 +19,7 @@ describe('Tests for Table component', () => {
   test('if the API request was properly done', () => {
     expect(fetch).toBeCalled();
     expect(fetch).toBeCalledTimes(1);
-    expect(fetch).toBeCalledWith('https://swapi-trybe.herokuapp.com/api/planets/');
+    expect(fetch).toBeCalledWith('https://swapi.dev/api/planets/');
   });
 
   test('if the Table has been properly populated with the data from API', () => {
