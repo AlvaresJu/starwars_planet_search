@@ -15,13 +15,13 @@ function App() {
         <section className={ styles.logo }>
           <Logo />
         </section>
-        <section className="search">
-          <NameFilter />
-          <NumericFilterForm />
-          <NumericFilterList />
-          <ColumnSortForm />
-        </section>
-        <section className="table">
+        <section className={ styles.search }>
+          <div className="form">
+            <NameFilter />
+            <NumericFilterForm />
+            <NumericFilterList />
+            <ColumnSortForm />
+          </div>
           <Table />
         </section>
       </main>
