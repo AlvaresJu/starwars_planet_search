@@ -1,12 +1,14 @@
 import React from 'react';
-import logoGraphics from '../images/grafismo-topo.png';
-import logoTitle from '../images/logo-star wars.png';
+import graphics from '../images/grafismo-topo.png';
+import logo from '../images/logo-star wars.png';
+import styles from '../styles/Logo.module.css';
 
 function Logo() {
   return (
     <>
-      <img src={ logoGraphics } alt="logo graphics" />
-      <img src={ logoTitle } alt="star wars logo" />
+      <img src={ graphics } alt="logo graphics" className={ styles.graphics } />
+      <img src={ logo } alt="star wars logo" className={ styles.logo } />
+      <h1 className={ styles.title }>PLANETS SEARCH</h1>
     </>
   );
 }
