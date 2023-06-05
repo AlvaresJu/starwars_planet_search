@@ -4,7 +4,7 @@
 
 .logo {
   position: absolute;
-  top: 145px;
+  top: 130px;
   z-index: 1;
 }
 
@@ -15,6 +15,6 @@
   font-family: 'Russo One' , sans-serif;
   font-size: 40px;
   position: absolute;
-  top: 365px;
+  top: 345px;
   z-index: 1;
 }
