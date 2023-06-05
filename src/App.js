@@ -6,24 +6,25 @@ import MyProvider from './context/MyProvider';
 import NumericFilterList from './components/NumericFilterList';
 import ColumnSortForm from './components/ColumnSortForm';
 import Logo from './components/Logo';
+import styles from './styles/App.module.css';
 
 function App() {
   return (
     <MyProvider>
-      <section className="logo">
-        <Logo />
-      </section>
-      <section className="planetsFilter">
-        <NameFilter />
-        <NumericFilterForm />
-        <NumericFilterList />
-      </section>
-      <section className="planetsSort">
-        <ColumnSortForm />
-      </section>
-      <section className="planetsTable">
-        <Table />
-      </section>
+      <main className={ styles.container }>
+        <section className={ styles.logo }>
+          <Logo />
+        </section>
+        <section className="search">
+          <NameFilter />
+          <NumericFilterForm />
+          <NumericFilterList />
+          <ColumnSortForm />
+        </section>
+        <section className="table">
+          <Table />
+        </section>
+      </main>
     </MyProvider>
   );
 }
