@@ -5,10 +5,14 @@ import NumericFilterForm from './components/NumericFilterForm';
 import MyProvider from './context/MyProvider';
 import NumericFilterList from './components/NumericFilterList';
 import ColumnSortForm from './components/ColumnSortForm';
+import Logo from './components/Logo';
 
 function App() {
   return (
     <MyProvider>
+      <section className="logo">
+        <Logo />
+      </section>
       <section className="planetsFilter">
         <NameFilter />
         <NumericFilterForm />
