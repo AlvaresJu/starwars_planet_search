@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import MyContext from '../context/MyContext';
+import styles from '../styles/NumericFilterForm.module.css';
 
 function NumericFilterForm() {
   const { columnFilterOptions,
@@ -8,9 +9,9 @@ function NumericFilterForm() {
     handleNumericFilter } = useContext(MyContext);
 
   return (
-    <form>
+    <form className={ styles.container }>
       <label htmlFor="column">
-        Propriedade:
+        Property
         <select
           data-testid="column-filter"
           id="column"
@@ -23,20 +24,20 @@ function NumericFilterForm() {
         </select>
       </label>
       <label htmlFor="comparison">
-        Operador:
+        Operator
         <select
           data-testid="comparison-filter"
           id="comparison"
           value={ currNumericFilters.comparison }
           onChange={ (event) => handleNumericFiltersChange(event) }
         >
-          <option>maior que</option>
-          <option>menor que</option>
-          <option>igual a</option>
+          <option>greater than</option>
+          <option>less than</option>
+          <option>equal to</option>
         </select>
       </label>
       <label htmlFor="value">
-        Valor:
+        Value
         <input
           type="number"
           data-testid="value-filter"
@@ -52,7 +53,7 @@ function NumericFilterForm() {
         disabled={ columnFilterOptions.length <= 0 }
         onClick={ handleNumericFilter }
       >
-        Filtrar
+        FILTER
       </button>
     </form>
   );
