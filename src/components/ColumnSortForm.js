@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import MyContext from '../context/MyContext';
+import styles from '../styles/ColumnSortForm.module.css';
 
 function ColumnSortForm() {
   const fullColumnOptions = [
@@ -7,9 +8,9 @@ function ColumnSortForm() {
   const { order, handleOrderChange, sortPlanetList } = useContext(MyContext);
 
   return (
-    <form>
-      <label htmlFor="columnToSort">
-        Ordenar por:
+    <form className={ styles.container }>
+      <label htmlFor="columnToSort" className={ styles.sortLabel }>
+        Order by:
         <select
           data-testid="column-sort"
           id="columnToSort"
@@ -22,36 +23,38 @@ function ColumnSortForm() {
           )) }
         </select>
       </label>
-      <label htmlFor="ascOption">
-        <input
-          type="radio"
-          data-testid="column-sort-input-asc"
-          id="ascOption"
-          name="sort"
-          value="ASC"
-          checked={ order.sort === 'ASC' }
-          onChange={ (event) => handleOrderChange(event) }
-        />
-        Ascendente
-      </label>
-      <label htmlFor="descOption">
-        <input
-          type="radio"
-          data-testid="column-sort-input-desc"
-          id="descOption"
-          name="sort"
-          value="DESC"
-          checked={ order.sort === 'DESC' }
-          onChange={ (event) => handleOrderChange(event) }
-        />
-        Descendente
-      </label>
+      <div className={ styles.radios }>
+        <label htmlFor="ascOption">
+          <input
+            type="radio"
+            data-testid="column-sort-input-asc"
+            id="ascOption"
+            name="sort"
+            value="ASC"
+            checked={ order.sort === 'ASC' }
+            onChange={ (event) => handleOrderChange(event) }
+          />
+          Ascending
+        </label>
+        <label htmlFor="descOption">
+          <input
+            type="radio"
+            data-testid="column-sort-input-desc"
+            id="descOption"
+            name="sort"
+            value="DESC"
+            checked={ order.sort === 'DESC' }
+            onChange={ (event) => handleOrderChange(event) }
+          />
+          Descending
+        </label>
+      </div>
       <button
         type="button"
         data-testid="column-sort-button"
         onClick={ sortPlanetList }
       >
-        Ordenar
+        ORDER
       </button>
     </form>
   );
