@@ -12,7 +12,7 @@ function MyProvider({ children }) {
   const [columnFilterOptions, setColumnFilterOptions] = useState(fullColumnOptions);
   const [currNumericFilters, setCurrNumericFilters] = useState({
     column: 'population',
-    comparison: 'maior que',
+    comparison: 'grater than',
     value: '0',
   });
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
@@ -68,11 +68,11 @@ function MyProvider({ children }) {
 
   const getFilteredByNumericValue = (column, comparison, value) => {
     switch (comparison) {
-    case 'maior que':
+    case 'greater than':
       return filteredPlanets.filter((planet) => Number(planet[column]) > Number(value));
-    case 'menor que':
+    case 'less than':
       return filteredPlanets.filter((planet) => Number(planet[column]) < Number(value));
-    case 'igual a':
+    case 'equal to':
       return filteredPlanets.filter((planet) => Number(planet[column]) === Number(value));
     default:
       return filteredPlanets;
@@ -86,7 +86,7 @@ function MyProvider({ children }) {
       });
       setCurrNumericFilters({
         column: columnFilterOptions[0],
-        comparison: 'maior que',
+        comparison: 'greater than',
         value: '0',
       });
     };
