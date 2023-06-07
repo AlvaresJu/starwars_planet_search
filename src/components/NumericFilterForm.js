@@ -9,7 +9,6 @@ function NumericFilterForm() {
 
   return (
     <form>
-      <h2>Filtros Numéricos</h2>
       <label htmlFor="column">
         Propriedade:
         <select

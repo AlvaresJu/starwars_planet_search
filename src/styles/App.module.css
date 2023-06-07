@@ -20,11 +20,12 @@
 }
 
 .planetsForm {
-  align-items: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 50px 45px 60px;
+  margin: 50px 45px 40px;
+  padding: 0 30px;
+  width: 100%;
 }
 
 ::-webkit-scrollbar {
