@@ -18,6 +18,8 @@ function MyProvider({ children }) {
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [order, setOrder] = useState({ column: 'population', sort: 'ASC' });
 
+  const TIMEOUT = 400;
+
   useEffect(() => {
     const getPalnetsData = async () => {
       try {
@@ -27,8 +29,10 @@ function MyProvider({ children }) {
           delete planet.residents;
           return planet;
         });
-        setPlanetsData(selectedData);
-        setFilteredPlanets(selectedData);
+        setTimeout(() => {
+          setPlanetsData(selectedData);
+          setFilteredPlanets(selectedData);
+        }, TIMEOUT);
       } catch (error) {
         console.log(error);
       }
