@@ -9,7 +9,7 @@ describe('Tests for Table component', () => {
       json: jest.fn().mockResolvedValue(apiData),
     });
     render(<App />);
-    await waitForElementToBeRemoved(screen.queryByText(/carregando/i));
+    await waitForElementToBeRemoved(screen.queryByText(/loading/i));
   });
 
   afterEach(() => {

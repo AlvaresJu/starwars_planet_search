@@ -10,15 +10,15 @@ describe('Tests for the Numeric Filter List', () => {
       json: jest.fn().mockResolvedValue(apiData),
     });
     render(<App />);
-    await waitForElementToBeRemoved(screen.queryByText(/carregando/i));
+    await waitForElementToBeRemoved(screen.queryByText(/loading/i));
 
-    const columnFilterInput = screen.getByRole('combobox', { name: /propriedade/i });
-    const comparisonFilterInput = screen.getByRole('combobox', { name: /operador/i });
-    const valueFilterInput = screen.getByRole('spinbutton', { name: /valor/i });
-    const numericFilterBtn = screen.getByRole('button', { name: /filtrar/i });
+    const columnFilterInput = screen.getByRole('combobox', { name: /property/i });
+    const comparisonFilterInput = screen.getByRole('combobox', { name: /operator/i });
+    const valueFilterInput = screen.getByRole('spinbutton', { name: /value/i });
+    const numericFilterBtn = screen.getByRole('button', { name: 'FILTER' });
 
     userEvent.selectOptions(columnFilterInput, ['population']);
-    userEvent.selectOptions(comparisonFilterInput, ['maior que']);
+    userEvent.selectOptions(comparisonFilterInput, ['greater than']);
     userEvent.type(valueFilterInput, '100');
     userEvent.click(numericFilterBtn);
   });
@@ -34,10 +34,10 @@ describe('Tests for the Numeric Filter List', () => {
     const delFilterBtn = filterItem.querySelector('button');
     expect(delFilterBtn).toBeInTheDocument();
 
-    const filterText = screen.getByText('population maior que 0100');
+    const filterText = screen.getByText('population greater than 0100');
     expect(filterText).toBeInTheDocument();
 
-    const delAllFiltersBtn = screen.getByRole('button', { name: /remover filtros/i });
+    const delAllFiltersBtn = screen.getByRole('button', { name: /remove filters/i });
     expect(delAllFiltersBtn).toHaveAttribute('data-testid', 'button-remove-filters');
   });
 
@@ -62,13 +62,13 @@ describe('Tests for the Numeric Filter List', () => {
   });
 
   test('if after deleting all filters, table values return to original status', () => {
-    const columnFilterInput = screen.getByRole('combobox', { name: /propriedade/i });
-    const comparisonFilterInput = screen.getByRole('combobox', { name: /operador/i });
-    const valueFilterInput = screen.getByRole('spinbutton', { name: /valor/i });
-    const numericFilterBtn = screen.getByRole('button', { name: /filtrar/i });
+    const columnFilterInput = screen.getByRole('combobox', { name: /property/i });
+    const comparisonFilterInput = screen.getByRole('combobox', { name: /operator/i });
+    const valueFilterInput = screen.getByRole('spinbutton', { name: /value/i });
+    const numericFilterBtn = screen.getByRole('button', { name: 'FILTER' });
 
     userEvent.selectOptions(columnFilterInput, ['orbital_period']);
-    userEvent.selectOptions(comparisonFilterInput, ['menor que']);
+    userEvent.selectOptions(comparisonFilterInput, ['less than']);
     userEvent.type(valueFilterInput, '400');
     userEvent.click(numericFilterBtn);
 
@@ -79,7 +79,7 @@ describe('Tests for the Numeric Filter List', () => {
       expect(planetsName[index]).toHaveTextContent(planet);
     });
 
-    const delAllFiltersBtn = screen.getByRole('button', { name: /remover filtros/i });
+    const delAllFiltersBtn = screen.getByRole('button', { name: /remove filters/i });
     userEvent.click(delAllFiltersBtn);
 
     const fullPlanetList = testTableData.map(({ name }) => name);

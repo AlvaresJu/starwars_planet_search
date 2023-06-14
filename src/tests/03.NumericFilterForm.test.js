@@ -10,7 +10,7 @@ describe('Tests for the Planet Numeric Filters', () => {
       json: jest.fn().mockResolvedValue(apiData),
     });
     render(<App />);
-    await waitForElementToBeRemoved(screen.queryByText(/carregando/i));
+    await waitForElementToBeRemoved(screen.queryByText(/loading/i));
   });
 
   afterEach(() => {
@@ -19,13 +19,14 @@ describe('Tests for the Planet Numeric Filters', () => {
 
   const fullColumnOptions = [
     'population', 'orbital_period', 'diameter', 'rotation_period', 'surface_water'];
-  const operatorOptions = ['maior que', 'menor que', 'igual a'];
+  const operatorOptions = ['greater than', 'less than', 'equal to'];
 
   const testId = 'data-testid';
   const planetsNameTestId = 'planet-name';
+  const filterBtnText = 'FILTER';
 
   test('if inputs and button for numeric filters are properly rendered', () => {
-    const columnFilterInput = screen.getByRole('combobox', { name: /propriedade/i });
+    const columnFilterInput = screen.getByRole('combobox', { name: /property/i });
     expect(columnFilterInput).toHaveAttribute(testId, 'column-filter');
     expect(columnFilterInput).toHaveValue(fullColumnOptions[0]);
     fullColumnOptions.forEach((option) => {
@@ -33,7 +34,7 @@ describe('Tests for the Planet Numeric Filters', () => {
       expect(columnOption).toBeInTheDocument();
     });
 
-    const comparisonFilterInput = screen.getByRole('combobox', { name: /operador/i });
+    const comparisonFilterInput = screen.getByRole('combobox', { name: /operator/i });
     expect(comparisonFilterInput).toHaveAttribute(testId, 'comparison-filter');
     expect(comparisonFilterInput).toHaveValue(operatorOptions[0]);
     operatorOptions.forEach((option) => {
@@ -41,11 +42,11 @@ describe('Tests for the Planet Numeric Filters', () => {
       expect(comparisonOption).toBeInTheDocument();
     });
 
-    const valueFilterInput = screen.getByRole('spinbutton', { name: /valor/i });
+    const valueFilterInput = screen.getByRole('spinbutton', { name: /value/i });
     expect(valueFilterInput).toHaveAttribute(testId, 'value-filter');
     expect(valueFilterInput).toHaveValue(0);
 
-    const numericFilterBtn = screen.getByRole('button', { name: /filtrar/i });
+    const numericFilterBtn = screen.getByRole('button', { name: filterBtnText });
     expect(numericFilterBtn).toHaveAttribute(testId, 'button-filter');
   });
 
@@ -53,7 +54,7 @@ describe('Tests for the Planet Numeric Filters', () => {
     const plantsFiltered = ['Tatooine', 'Alderaan', 'Yavin IV', 'Bespin',
       'Endor', 'Naboo', 'Coruscant', 'Kamino'];
 
-    const numericFilterBtn = screen.getByRole('button', { name: /filtrar/i });
+    const numericFilterBtn = screen.getByRole('button', { name: filterBtnText });
     userEvent.click(numericFilterBtn);
 
     const planetsName = screen.getAllByTestId(planetsNameTestId);
@@ -66,16 +67,16 @@ describe('Tests for the Planet Numeric Filters', () => {
     const plantsFiltered = [
       'Tatooine', 'Alderaan', 'Dagobah', 'Naboo', 'Coruscant'];
 
-    const columnFilterInput = screen.getByRole('combobox', { name: /propriedade/i });
+    const columnFilterInput = screen.getByRole('combobox', { name: /property/i });
     userEvent.selectOptions(columnFilterInput, ['orbital_period']);
 
-    const comparisonFilterInput = screen.getByRole('combobox', { name: /operador/i });
-    userEvent.selectOptions(comparisonFilterInput, ['menor que']);
+    const comparisonFilterInput = screen.getByRole('combobox', { name: /operator/i });
+    userEvent.selectOptions(comparisonFilterInput, [operatorOptions[1]]);
 
-    const valueFilterInput = screen.getByRole('spinbutton', { name: /valor/i });
+    const valueFilterInput = screen.getByRole('spinbutton', { name: /value/i });
     userEvent.type(valueFilterInput, '400');
 
-    const numericFilterBtn = screen.getByRole('button', { name: /filtrar/i });
+    const numericFilterBtn = screen.getByRole('button', { name: filterBtnText });
     userEvent.click(numericFilterBtn);
 
     const planetsName = screen.getAllByTestId(planetsNameTestId);
@@ -84,20 +85,20 @@ describe('Tests for the Planet Numeric Filters', () => {
     });
   });
 
-  test('a filter with the comparison option: bigger than', () => {
+  test('a filter with the comparison option: greater than', () => {
     const plantsFiltered = ['Tatooine', 'Alderaan', 'Yavin IV',
       'Hoth', 'Dagobah', 'Naboo', 'Coruscant', 'Kamino'];
 
-    const columnFilterInput = screen.getByRole('combobox', { name: /propriedade/i });
+    const columnFilterInput = screen.getByRole('combobox', { name: /property/i });
     userEvent.selectOptions(columnFilterInput, ['rotation_period']);
 
-    const comparisonFilterInput = screen.getByRole('combobox', { name: /operador/i });
-    userEvent.selectOptions(comparisonFilterInput, ['maior que']);
+    const comparisonFilterInput = screen.getByRole('combobox', { name: /operator/i });
+    userEvent.selectOptions(comparisonFilterInput, [operatorOptions[0]]);
 
-    const valueFilterInput = screen.getByRole('spinbutton', { name: /valor/i });
+    const valueFilterInput = screen.getByRole('spinbutton', { name: /value/i });
     userEvent.type(valueFilterInput, '20');
 
-    const numericFilterBtn = screen.getByRole('button', { name: /filtrar/i });
+    const numericFilterBtn = screen.getByRole('button', { name: filterBtnText });
     userEvent.click(numericFilterBtn);
 
     const planetsName = screen.getAllByTestId(planetsNameTestId);
@@ -109,16 +110,16 @@ describe('Tests for the Planet Numeric Filters', () => {
   test('a filter with the comparison option: equal to', () => {
     const plantsFiltered = ['Yavin IV', 'Dagobah', 'Endor'];
 
-    const columnFilterInput = screen.getByRole('combobox', { name: /propriedade/i });
+    const columnFilterInput = screen.getByRole('combobox', { name: /property/i });
     userEvent.selectOptions(columnFilterInput, ['surface_water']);
 
-    const comparisonFilterInput = screen.getByRole('combobox', { name: /operador/i });
-    userEvent.selectOptions(comparisonFilterInput, ['igual a']);
+    const comparisonFilterInput = screen.getByRole('combobox', { name: /operator/i });
+    userEvent.selectOptions(comparisonFilterInput, [operatorOptions[2]]);
 
-    const valueFilterInput = screen.getByRole('spinbutton', { name: /valor/i });
+    const valueFilterInput = screen.getByRole('spinbutton', { name: /value/i });
     userEvent.type(valueFilterInput, '8');
 
-    const numericFilterBtn = screen.getByRole('button', { name: /filtrar/i });
+    const numericFilterBtn = screen.getByRole('button', { name: filterBtnText });
     userEvent.click(numericFilterBtn);
 
     const planetsName = screen.getAllByTestId(planetsNameTestId);
@@ -130,18 +131,18 @@ describe('Tests for the Planet Numeric Filters', () => {
   test('subsequent filters', () => {
     const plantsFiltered = ['Tatooine', 'Alderaan', 'Dagobah', 'Naboo', 'Coruscant'];
 
-    const columnFilterInput = screen.getByRole('combobox', { name: /propriedade/i });
-    const comparisonFilterInput = screen.getByRole('combobox', { name: /operador/i });
-    const valueFilterInput = screen.getByRole('spinbutton', { name: /valor/i });
-    const numericFilterBtn = screen.getByRole('button', { name: /filtrar/i });
+    const columnFilterInput = screen.getByRole('combobox', { name: /property/i });
+    const comparisonFilterInput = screen.getByRole('combobox', { name: /operator/i });
+    const valueFilterInput = screen.getByRole('spinbutton', { name: /value/i });
+    const numericFilterBtn = screen.getByRole('button', { name: filterBtnText });
 
     userEvent.selectOptions(columnFilterInput, ['rotation_period']);
-    userEvent.selectOptions(comparisonFilterInput, ['maior que']);
+    userEvent.selectOptions(comparisonFilterInput, [operatorOptions[0]]);
     userEvent.type(valueFilterInput, '20');
     userEvent.click(numericFilterBtn);
 
     userEvent.selectOptions(columnFilterInput, ['orbital_period']);
-    userEvent.selectOptions(comparisonFilterInput, ['menor que']);
+    userEvent.selectOptions(comparisonFilterInput, [operatorOptions[1]]);
     userEvent.type(valueFilterInput, '400');
     userEvent.click(numericFilterBtn);
 
@@ -152,16 +153,16 @@ describe('Tests for the Planet Numeric Filters', () => {
   });
 
   test('that it is not possible to do repeated numeric filters', () => {
-    const columnFilterInput = screen.getByRole('combobox', { name: /propriedade/i });
-    const comparisonFilterInput = screen.getByRole('combobox', { name: /operador/i });
-    const valueFilterInput = screen.getByRole('spinbutton', { name: /valor/i });
-    const numericFilterBtn = screen.getByRole('button', { name: /filtrar/i });
+    const columnFilterInput = screen.getByRole('combobox', { name: /property/i });
+    const comparisonFilterInput = screen.getByRole('combobox', { name: /operator/i });
+    const valueFilterInput = screen.getByRole('spinbutton', { name: /value/i });
+    const numericFilterBtn = screen.getByRole('button', { name: filterBtnText });
 
     let populationOption = screen.getAllByRole('option', { name: /population/i });
     expect(populationOption).toHaveLength(2);
 
     userEvent.selectOptions(columnFilterInput, ['population']);
-    userEvent.selectOptions(comparisonFilterInput, ['maior que']);
+    userEvent.selectOptions(comparisonFilterInput, [operatorOptions[0]]);
     userEvent.type(valueFilterInput, '100');
     userEvent.click(numericFilterBtn);
 

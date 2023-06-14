@@ -10,7 +10,7 @@ describe('Tests for the Planet Name Filter', () => {
       json: jest.fn().mockResolvedValue(apiData),
     });
     render(<App />);
-    await waitForElementToBeRemoved(screen.queryByText(/carregando/i));
+    await waitForElementToBeRemoved(screen.queryByText(/loading/i));
   });
 
   afterEach(() => {
@@ -18,18 +18,19 @@ describe('Tests for the Planet Name Filter', () => {
   });
 
   const planetsNameTestId = 'planet-name';
+  const planetNamePlaceholder = 'Planet Name';
   const allPlanetsName = testTableData.map(({ name }) => name);
   const planetsWithOInName = [
     'Tatooine', 'Hoth', 'Dagobah', 'Endor', 'Naboo', 'Coruscant', 'Kamino'];
   const planetsWithOOInName = ['Tatooine', 'Naboo'];
 
   test('if the text input for name filter is rendered', () => {
-    const nameFilterInput = screen.getByRole('textbox', { name: /nome do planeta:/i });
+    const nameFilterInput = screen.getByPlaceholderText(planetNamePlaceholder);
     expect(nameFilterInput).toHaveAttribute('data-testid', 'name-filter');
   });
 
   test('if a filter for planets with the letter "o" in name can be done', () => {
-    const nameFilterInput = screen.getByRole('textbox', { name: /nome do planeta:/i });
+    const nameFilterInput = screen.getByPlaceholderText(planetNamePlaceholder);
     userEvent.type(nameFilterInput, 'o');
     const planetsName = screen.getAllByTestId(planetsNameTestId);
     planetsWithOInName.forEach((name, index) => {
@@ -38,7 +39,7 @@ describe('Tests for the Planet Name Filter', () => {
   });
 
   test('if a filter for planets with "oo" in name can be done', () => {
-    const nameFilterInput = screen.getByRole('textbox', { name: /nome do planeta:/i });
+    const nameFilterInput = screen.getByPlaceholderText(planetNamePlaceholder);
     userEvent.type(nameFilterInput, 'oo');
     const planetsName = screen.getAllByTestId(planetsNameTestId);
     planetsWithOOInName.forEach((name, index) => {
@@ -47,7 +48,7 @@ describe('Tests for the Planet Name Filter', () => {
   });
 
   test('if a planet name filter can be cleared', () => {
-    const nameFilterInput = screen.getByRole('textbox', { name: /nome do planeta:/i });
+    const nameFilterInput = screen.getByPlaceholderText(planetNamePlaceholder);
     userEvent.type(nameFilterInput, 'oo');
     let planetsName = screen.getAllByTestId(planetsNameTestId);
     planetsWithOOInName.forEach((name, index) => {
