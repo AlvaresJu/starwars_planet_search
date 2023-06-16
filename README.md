@@ -109,7 +109,7 @@
 ```
 
 # Contributions and Authors
-  As described, this project was proposed by [Trybe](https://www.betrybe.com/) and developed by _[Juliana Álvares](https://www.linkedin.com/in/juliana-alvares/)_ during the Web Development course. Therefore, Trybe provided some base configuration and aids files for the project. The authorship specification of the main documents is as follows:
+  As described, this project was proposed by [Trybe](https://www.betrybe.com/) and developed by _[Juliana Álvares](https://www.linkedin.com/in/juliana-alvares/)_ during the Web Development course. Therefore, Trybe provided some auxiliary and base configuration files for the project, as well as integration tests with Cypress. The authorship specification of the main documents is as follows:
   
   Files/directories developed by the project author (Juliana Álvares):
   > /src/**
