@@ -18,10 +18,8 @@ function MyProvider({ children }) {
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
   const [order, setOrder] = useState({ column: 'population', sort: 'ASC' });
 
-  const TIMEOUT = 400;
-
   useEffect(() => {
-    const getPalnetsData = async () => {
+    const getPlanetsData = async () => {
       try {
         const apiResponse = await fetch('https://swapi.dev/api/planets/');
         const apiData = await apiResponse.json();
@@ -29,15 +27,13 @@ function MyProvider({ children }) {
           delete planet.residents;
           return planet;
         });
-        setTimeout(() => {
-          setPlanetsData(selectedData);
-          setFilteredPlanets(selectedData);
-        }, TIMEOUT);
+        setPlanetsData(selectedData);
+        setFilteredPlanets(selectedData);
       } catch (error) {
         console.log(error);
       }
     };
-    getPalnetsData();
+    getPlanetsData();
   }, []);
 
   const applyNameFilter = (nameToFilter) => {
