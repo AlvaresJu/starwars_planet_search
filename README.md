@@ -115,7 +115,7 @@
   > /src/**
   
   Files/directories provided by Trybe:
-  > .eslintrc.json , .stylelintrc.json , .editorconfig , versão inicial do package.json , versão inicial do package-lock.json , /cypress/** , /public/**
+  > .eslintrc.json , .stylelintrc.json , .editorconfig , initial version of package.json and package-lock.json , /cypress/** , /public/**
 
   
 <!-- MARKDOWN LINKS & IMAGES -->
