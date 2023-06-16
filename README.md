@@ -33,11 +33,11 @@
 
 
 # About the Project
-  The Star Wars Planets Search project is a front-end web application that provides a list of filters for information about the planets in the Star Wars universe. The application was developed in React, using *Context API* and *React Hooks* to manage global states.
+  The Star Wars Planets Search project is a front-end web application that provides a list of filters for information about the planets of the Star Wars universe. This is a React application, using *Context API* and *React Hooks* to manage global states.
 ## Context
-  This project was developed by _[Juliana Álvares](https://www.linkedin.com/in/juliana-alvares/)_ as part of the front-end module learning process in the Web Development course at [Trybe](https://www.betrybe.com/) :rocket:
+  This project was developed by _[Juliana Álvares](https://www.linkedin.com/in/juliana-alvares/)_ as part of the front-end module of the Web Development course at [Trybe](https://www.betrybe.com/) :rocket:
 
-  The [Trybe](https://www.betrybe.com/) program features over 1,500 hours of in-person and online classes, covering software development introduction, front-end, back-end, computer science, software engineering, Agile methodologies, and soft skills.
+  The [Trybe](https://www.betrybe.com/) program features over 1,500 hours of in-person and online classes, including software development introduction, front-end, back-end, computer science, software engineering, Agile methodologies, and soft skills.
 
 ## Technologies Used
 
@@ -60,9 +60,9 @@
 
   - Table of Star Wars planets with information about:
     - Physical characteristics of each planet;
-    - URLs for API endpoints to get data about the movies in which the planet appears;
+    - URLs for source API endpoints to get data about the movies in which the planet appears;
     - Planet data creation and editing timestamps;
-    - URL for API endpoint to get planet data.
+    - URL for source API endpoint to get raw planet data.
   - Text search for planet names;
   - Filtering of planets by quantitative characteristics;
   - Multiple filters possibility;
