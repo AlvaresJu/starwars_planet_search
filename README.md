@@ -105,7 +105,7 @@
 #### Tests with page viewer
 ```bash
   npm start
-  pm run cy:open
+  npm run cy:open
 ```
 
 # Contributions and Authors
