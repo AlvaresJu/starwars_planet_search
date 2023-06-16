@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/starwars_planet_search/static/css/main.07fe92fd.css",
-    "main.js": "/starwars_planet_search/static/js/main.ec3b15ce.js",
+    "main.js": "/starwars_planet_search/static/js/main.d636509d.js",
     "static/media/fundo-star-wars.png": "/starwars_planet_search/static/media/fundo-star-wars.15379a460890cc678884.png",
     "static/media/grafismo-topo.png": "/starwars_planet_search/static/media/grafismo-topo.6f72f71f8ce83f8606dc.png",
     "index.html": "/starwars_planet_search/index.html",
     "main.07fe92fd.css.map": "/starwars_planet_search/static/css/main.07fe92fd.css.map",
-    "main.ec3b15ce.js.map": "/starwars_planet_search/static/js/main.ec3b15ce.js.map"
+    "main.d636509d.js.map": "/starwars_planet_search/static/js/main.d636509d.js.map"
   },
   "entrypoints": [
     "static/css/main.07fe92fd.css",
-    "static/js/main.ec3b15ce.js"
+    "static/js/main.d636509d.js"
   ]
 }
