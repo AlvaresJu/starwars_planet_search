@@ -24,7 +24,14 @@ function Table() {
                     key={ index }
                     data-testid={ (info === 'name') ? 'planet-name' : '' }
                   >
-                    { planet[info] }
+                    { info !== 'films'
+                      ? planet[info]
+                      : planet[info].map((film, filmIndex) => (
+                        <>
+                          <span key={ filmIndex }>{ film }</span>
+                          <br />
+                        </>
+                      )) }
                   </td>
                 )) }
               </tr>
