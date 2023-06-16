@@ -47,6 +47,7 @@
   #### Testing:
   * [![Jest][Jest-img]][Jest-url]
   * [![Testing-Library][RTL-img]][RTL-url]
+  * [![Cypress][Cypress-img]][Cypress-url]
 
   #### Languages:
   * [![JavaScript - ES6][JavaScript-img]][JavaScript-url]
@@ -63,7 +64,7 @@
     - Planet data creation and editing timestamps;
     - URL for API endpoint to get planet data.
   - Text search for planet names;
-  - Filtering of planets by quantitative characteristics
+  - Filtering of planets by quantitative characteristics;
   - Multiple filters possibility;
   - Individual filter removal and complete filters reset;
   - Ascending or descending sorting of data by selected characteristic.
@@ -127,6 +128,8 @@
 [Jest-url]: https://jestjs.io/
 [RTL-img]: https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white
 [RTL-url]: https://testing-library.com/
+[Cypress-img]: https://img.shields.io/badge/Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white
+[Cypress-url]:https://www.cypress.io/
 [JavaScript-img]: https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E
 [JavaScript-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
 [CSS3-img]: https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white
