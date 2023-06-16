@@ -28,7 +28,7 @@ describe('7 - Apague um filtro de valor numérico ao clicar no ícone de X de um
   it('Adicione um filtro e verifique se a tabela foi atualizada com as informações filtradas, depois remova o filtro e verifique se os valores da tabela voltaram ao original', () => {
     cy.get('table tr').should('have.length', TOTAL_ROWS_COUNT);
 
-    cy.addFilter('diameter', 'maior que', '8900');
+    cy.addFilter('diameter', 'greater than', '8900');
 
     cy.get('table tr').should('have.length', FILTERED_ROWS_COUNT);
 
@@ -40,8 +40,8 @@ describe('7 - Apague um filtro de valor numérico ao clicar no ícone de X de um
   it('Adicione dois filtros e verifique se a tabela foi atualizada com as informações filtradas, depois remova os filtros e verifique se os valores da tabela voltaram ao original', () => {
     cy.get('table tr').should('have.length', TOTAL_ROWS_COUNT);
 
-    cy.addFilter('diameter', 'maior que', '8900');
-    cy.addFilter('population', 'menor que', '1000000');
+    cy.addFilter('diameter', 'greater than', '8900');
+    cy.addFilter('population', 'less than', '1000000');
 
     cy.get('table tr').should('have.length', DOUBLE_FILTERED);
 
@@ -57,9 +57,9 @@ describe('7 - Apague um filtro de valor numérico ao clicar no ícone de X de um
   it('Adicione três filtros e clique no botão Remover Filtragens, todos os filtros deverão ser removidos', () => {
     cy.get('table tr').should('have.length', TOTAL_ROWS_COUNT);
 
-    cy.addFilter('diameter', 'maior que', '8900');
-    cy.addFilter('population', 'menor que', '1000000');
-    cy.addFilter('rotation_period', 'igual a', '23');
+    cy.addFilter('diameter', 'greater than', '8900');
+    cy.addFilter('population', 'less than', '1000000');
+    cy.addFilter('rotation_period', 'equal to', '23');
 
     cy.get('table tr').should('have.length', TRIPLE_FILTERED);
 

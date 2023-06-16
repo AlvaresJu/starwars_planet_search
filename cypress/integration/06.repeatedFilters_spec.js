@@ -25,7 +25,7 @@ describe('6 - Não utilize filtros repetidos', () => {
       });
     });
 
-    cy.addFilter('population', 'maior que', '8000');
+    cy.addFilter('population', 'greater than', '8000');
 
     cy.get('table tr').should('have.length', FILTERED_ROWS_COUNT);
 

@@ -20,23 +20,23 @@ describe('4 - Implemente múltiplos filtros numéricos', () => {
   it('Adicione dois filtros e verifique se a tabela foi atualizada com as informações filtradas', () => {
     cy.get('table tr').should('have.length', ROWS_TOTAL);
 
-    cy.addFilter('diameter', 'maior que', '9000');
+    cy.addFilter('diameter', 'greater than', '9000');
     cy.get('table tr').should('have.length', FILTERED_ROWS);
 
-    cy.addFilter('population', 'menor que', '1000000');
+    cy.addFilter('population', 'less than', '1000000');
     cy.get('table tr').should('have.length', DOUBLE_FILTERED_ROWS);
   });
 
   it('Adicione três filtros e verifique se a tabela foi atualizada com as informações filtradas', () => {
     cy.get('table tr').should('have.length', ROWS_TOTAL);
 
-    cy.addFilter('diameter', 'maior que', '9000');
+    cy.addFilter('diameter', 'greater than', '9000');
     cy.get('table tr').should('have.length', FILTERED_ROWS);
 
-    cy.addFilter('population', 'menor que', '1000000');
+    cy.addFilter('population', 'less than', '1000000');
     cy.get('table tr').should('have.length', DOUBLE_FILTERED_ROWS);
 
-    cy.addFilter('rotation_period', 'igual a', '23');
+    cy.addFilter('rotation_period', 'equal to', '23');
     cy.get('table tr').should('have.length', TRIPLE_FILTERED_ROWS);
   });
 });

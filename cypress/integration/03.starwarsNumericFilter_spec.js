@@ -19,7 +19,7 @@ describe('3 - Crie um filtro para valores numéricos', () => {
   });
 
   it('Renderize o filtro de comparação', () => {
-    const options = ['maior que', 'menor que', 'igual a'];
+    const options = ['greater than', 'less than', 'equal to'];
     cy.getByTestId(COMPARISON_FILTER).children().should('have.length', options.length)
       .each((el) => {
         expect(el.text()).to.be.oneOf(options);
@@ -36,7 +36,7 @@ describe('3 - Crie um filtro para valores numéricos', () => {
 
   it('Verifica valores iniciais de cada campo', () => {
     cy.getByTestId(COLUMN_FILTER).should('have.value', 'population');
-    cy.getByTestId(COMPARISON_FILTER).should('have.value', 'maior que');
+    cy.getByTestId(COMPARISON_FILTER).should('have.value', 'greater than');
     cy.getByTestId(VALUE_FILTER).should('have.value', '0');
   });
 
@@ -46,21 +46,21 @@ describe('3 - Crie um filtro para valores numéricos', () => {
     cy.get('table tr').should('have.length', DEFAULT_FILTERED_ROWS);
   });
 
-  it('Filtre utilizando a comparação "menor que"', () => {
+  it('Filtre utilizando a comparação "less than"', () => {
     const LESS_FILTERED_ROWS = 7;
-    cy.addFilter('surface_water', 'menor que', '40');
+    cy.addFilter('surface_water', 'less than', '40');
     cy.get('table tr').should('have.length', LESS_FILTERED_ROWS);
   });
 
-  it('Filtre utilizando a comparação "maior que"', () => {
+  it('Filtre utilizando a comparação "greater than"', () => {
     const GREATER_FILTERED_ROWS = 8;
-    cy.addFilter('diameter', 'maior que', '8900');
+    cy.addFilter('diameter', 'greater than', '8900');
     cy.get('table tr').should('have.length', GREATER_FILTERED_ROWS);
   });
 
-  it('Filtre utilizando a comparação "igual a"', () => {
+  it('Filtre utilizando a comparação "equal to"', () => {
     const EQUALS_FILTERED_ROWS = 2;
-    cy.addFilter('population', 'igual a', '200000');
+    cy.addFilter('population', 'equal to', '200000');
     cy.get('table tr').should('have.length', EQUALS_FILTERED_ROWS);
   });
 });
